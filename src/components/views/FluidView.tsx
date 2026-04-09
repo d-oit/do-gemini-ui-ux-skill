@@ -69,7 +69,7 @@ export const FluidView = () => {
   const { width, height } = getIslandDimensions();
 
   return (
-    <div className={cn("space-y-10 md:space-y-16 py-10 md:py-20 px-4 overflow-x-hidden", TOKENS.colors.app.bg)}>
+    <div className={cn("space-y-10 md:space-y-16 py-10 md:py-20 px-4", TOKENS.colors.app.bg)}>
       {/* 2026 LIQUID DYNAMIC ISLAND SYSTEM */}
       <div className="flex justify-center sticky top-20 md:top-24 z-50 overflow-visible">
         <motion.div 

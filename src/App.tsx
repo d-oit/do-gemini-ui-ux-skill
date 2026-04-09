@@ -32,7 +32,7 @@ export default function App() {
   };
 
   return (
-    <div className={`min-h-screen ${currentStyles.bg} transition-colors duration-700 font-sans selection:bg-blue-500/30 relative overflow-x-hidden ${TOKENS.effects.antiFlicker}`}>
+    <div className={`min-h-full ${currentStyles.bg} transition-colors duration-700 font-sans selection:bg-blue-500/30 relative ${TOKENS.effects.antiFlicker}`}>
       {/* Global Atmosphere */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <motion.div 

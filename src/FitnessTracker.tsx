@@ -13,7 +13,7 @@ const FitnessTracker = () => {
   const styles = TOKENS.colors.technical;
 
   return (
-    <div className={cn(styles.bg, 'min-h-screen p-4 md:p-8 font-sans overflow-x-hidden')}>
+    <div className={cn(styles.bg, 'p-4 md:p-8 font-sans')}>
       {/* Header */}
       <header className={cn("mb-8 md:mb-16 border-b pb-8 relative", styles.border)}>
         <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none bg-[linear-gradient(to_right,#141414_1px,transparent_1px),linear-gradient(to_bottom,#141414_1px,transparent_1px)] bg-[size:20px_20px]" />

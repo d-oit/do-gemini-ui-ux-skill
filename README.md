@@ -1,20 +1,42 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# UI/UX Optimize Skill Builder
 
-# Run and deploy your AI Studio app
+A production-grade agent skill for upgrading UI/UX requests into precise, token-driven design prompts for apps and games.
 
-This contains everything you need to run your app locally.
+## Overview
 
-View your app in AI Studio: https://ai.studio/apps/df6c9fed-d58b-4200-9b91-e3f4952de1ff
+This project provides a structured framework for converting ambiguous UI/UX requests (e.g., "make it look modern") into technical design specifications. It uses a semantic design system, multi-mode architecture, and automated validation to ensure high-fidelity results.
 
-## Run Locally
+## Key Features
 
-**Prerequisites:**  Node.js
+- **Multi-Mode Design System**: Support for App, Game, Neural, and Technical themes.
+- **Atmospheric Effects**: Advanced glassmorphism, refractive blurs, and liquid shimmers.
+- **Semantic Tokens**: Centralized source of truth for all design attributes.
+- **Automated Validation**: Scripts to ensure token alignment and design stability.
+- **Visual Testing**: Integrated Playwright-based testing for visual regression and screenshot generation.
 
+## Getting Started
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+1. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
+
+2. **Run Development Server**:
+   ```bash
+   npm run dev
+   ```
+
+3. **Initialize Design System**:
+   Follow the instructions in `docs/design/design-system.md` to customize your tokens.
+
+## Documentation
+
+- [Design System](docs/design/design-system.md)
+- [Color Palette](docs/design/color-palette.md)
+- [Typography](docs/design/typography.md)
+- [Layout & Composition](docs/design/layout.md)
+- [Visual Testing & Screenshots](docs/testing.md)
+
+## Testing
+
+We use Playwright for visual regression testing. See [Visual Testing](docs/testing.md) for more details.
