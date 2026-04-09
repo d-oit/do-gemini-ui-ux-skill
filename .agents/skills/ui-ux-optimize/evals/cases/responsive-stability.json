@@ -1,0 +1,9 @@
+{
+  "name": "Responsive Stability Test",
+  "description": "Verifies that the skill applies responsive and stability tokens.",
+  "input": "Create a responsive navigation bar for the Technical mode.",
+  "expectations": {
+    "contains": ["overflow-x-auto", "md:flex", "will-change-transform"],
+    "not_contains": ["fixed w-[100vw]"]
+  }
+}

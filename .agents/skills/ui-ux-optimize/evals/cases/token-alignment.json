@@ -1,0 +1,9 @@
+{
+  "name": "Token Alignment Test",
+  "description": "Verifies that the skill uses tokens defined in design-system.md",
+  "input": "Optimize the main dashboard container for the Neural mode.",
+  "expectations": {
+    "contains": ["bg-[#020617]", "backdrop-blur-[80px]", "rounded-[32px]"],
+    "not_contains": ["bg-white", "rounded-lg"]
+  }
+}

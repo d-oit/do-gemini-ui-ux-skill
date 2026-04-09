@@ -1,31 +1,44 @@
-# Design System: Technical Dashboard (2026)
+# Design System: Multi-Mode Atmospheric Interface (2026)
 
-This document serves as the persistent source of truth for the UI/UX design tokens in this codebase.
+This document is the persistent source of truth for the UI/UX design tokens.
 
-## Semantic Tokens
+## Core Modes
 
-### Colors
-- **Background (bg):** `#E4E3E0` (Warm Paper)
-- **Ink (ink):** `#141414` (Deep Charcoal)
-- **Line (line):** `#141414` (Sharp Borders)
-- **Accent (accent):** `#F27D26` (Warm Orange)
-- **Muted (muted):** `rgba(20, 20, 20, 0.5)`
+### 1. App (Standard)
+- **Background:** `#050505`
+- **Surface:** `bg-white/[0.03]`
+- **Primary:** `bg-blue-600`
+- **Accent:** `text-blue-400`
 
-### Typography
-- **Display:** "Anton", sans-serif (Bold, Uppercase)
-- **Body:** "Inter", sans-serif (Clean, Modern)
-- **Mono:** "Courier New", monospace (Data Precision)
+### 2. Game (Tactical)
+- **Background:** `bg-zinc-950`
+- **Surface:** `bg-zinc-900/90`
+- **Primary:** `bg-emerald-400`
+- **Accent:** `text-emerald-400`
 
-### Spacing
-- **Base:** `4px`
-- **Gutter:** `16px`
-- **Section:** `48px`
+### 3. Neural (Brain Visualizer)
+- **Background:** `#020617`
+- **Surface:** `bg-indigo-500/5`
+- **Primary:** `bg-cyan-500`
+- **Accent:** `text-fuchsia-400`
 
-## Layout Rules
-- **Grid:** 12-column fluid grid.
-- **Borders:** 1px solid `var(--line)` for all structural elements.
-- **Density:** High density for desktop, fluid stacking for mobile.
+### 4. Technical (Fitness Telemetry)
+- **Background:** `#E4E3E0`
+- **Surface:** `bg-white`
+- **Primary:** `#141414`
+- **Accent:** `#F27D26`
 
-## Interaction
-- **Hover:** Invert colors (bg -> ink, ink -> bg).
-- **Transitions:** `0.2s ease-in-out`.
+## Atmospheric Effects
+- **Glass Refractive:** `backdrop-blur-[80px] bg-white/[0.01] border border-white/[0.1] shadow-[0_0_50px_rgba(0,0,0,0.5)]`
+- **Shimmer:** Dynamic moving gradient for high-impact surfaces.
+- **Anti-Flicker:** `will-change-transform transform-gpu backface-visibility-hidden` (Applied to all animated elements).
+
+## Typography
+- **Heading:** `font-bold tracking-tighter leading-[1.1]`
+- **Body:** `text-sm md:text-base leading-relaxed`
+- **MicroLabel:** `text-[10px] font-bold uppercase tracking-[0.3em]`
+
+## Layout & Spacing
+- **Container:** `max-w-6xl mx-auto px-4 md:px-6`
+- **Gap:** `gap-4 md:gap-6`
+- **Radius:** `rounded-[32px]` (App), `rounded-sm` (Game)

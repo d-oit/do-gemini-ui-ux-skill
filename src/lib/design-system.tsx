@@ -103,7 +103,7 @@ export const TOKENS = {
   },
   typography: {
     microLabel: 'text-[10px] font-bold uppercase tracking-[0.3em]',
-    heading: 'text-3xl md:text-6xl font-bold tracking-tighter leading-[0.85]',
+    heading: 'text-3xl md:text-6xl font-bold tracking-tighter leading-[1.1]',
     body: 'text-sm md:text-base leading-relaxed',
     mono: 'font-mono tracking-tight',
   },

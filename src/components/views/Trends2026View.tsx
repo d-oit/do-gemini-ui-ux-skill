@@ -95,18 +95,18 @@ export const Trends2026View = () => {
             </motion.div>
             
             <motion.h3 
-              className={cn(TOKENS.typography.heading, "text-5xl md:text-8xl text-white")}
+              className={cn(TOKENS.typography.heading, "text-5xl md:text-8xl text-white pb-4")}
               style={{ perspective: 1000 }}
             >
               <motion.span 
                 animate={{ x: mousePos.x * 10, y: mousePos.y * 5 }}
-                className="block"
+                className="block py-2"
               >
                 Spatial
               </motion.span>
               <motion.span 
                 animate={{ x: mousePos.x * 20, y: mousePos.y * 10 }}
-                className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500"
+                className="block py-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500"
               >
                 Intelligence
               </motion.span>

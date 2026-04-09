@@ -1,0 +1,9 @@
+{
+  "name": "Anti-Slop Test",
+  "description": "Verifies that the skill avoids generic AI design patterns.",
+  "input": "Design a new landing page for a high-performance fitness app.",
+  "expectations": {
+    "contains": ["font-bold", "tracking-tighter"],
+    "not_contains": ["font-inter", "bg-gradient-to-r from-purple-500 to-blue-500"]
+  }
+}
