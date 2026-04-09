@@ -1,0 +1,5 @@
+{
+  "name": "UI/UX Optimize Skill Builder",
+  "description": "A production-grade agent skill for upgrading UI/UX requests into precise, token-driven design prompts for apps and games.",
+  "requestFramePermissions": []
+}
