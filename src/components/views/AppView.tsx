@@ -21,7 +21,7 @@ export const AppView = () => {
   
   return (
     <div className={cn(
-      "space-y-10 p-4 md:p-10 rounded-[32px] md:rounded-[48px] border min-h-[600px] md:min-h-[700px] relative overflow-hidden",
+      "space-y-10 p-4 md:p-10 rounded-[32px] md:rounded-[48px] border relative overflow-hidden",
       TOKENS.effects.glassRefractive,
       TOKENS.effects.antiFlicker
     )}>

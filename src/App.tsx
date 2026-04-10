@@ -32,7 +32,7 @@ export default function App() {
   };
 
   return (
-    <div className={`min-h-full ${currentStyles.bg} transition-colors duration-700 font-sans selection:bg-blue-500/30 relative ${TOKENS.effects.antiFlicker}`}>
+    <div className={`min-h-screen ${currentStyles.bg} transition-colors duration-700 font-sans selection:bg-blue-500/30 relative ${TOKENS.effects.antiFlicker}`}>
       {/* Global Atmosphere */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <motion.div 
@@ -103,8 +103,8 @@ export default function App() {
         </div>
       </header>
 
-      <main className={cn(TOKENS.layout.container, "pt-32 md:pt-40 pb-24 space-y-12 relative z-10")}>
-        <section className="space-y-4 text-center md:text-left">
+      <main className={cn(TOKENS.layout.container, "pt-24 md:pt-32 pb-12 relative z-10")}>
+        <section className="space-y-2 text-center md:text-left mb-8 md:mb-12">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -120,7 +120,7 @@ export default function App() {
             key={`${mode}-title`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className={cn(TOKENS.typography.heading, currentStyles.text)}
+            className={cn(TOKENS.typography.heading, currentStyles.text, "break-words max-w-full text-center md:text-left")}
           >
             {mode === 'app' ? 'System Performance Monitor' : mode === 'game' ? 'Tactical Combat HUD' : mode === 'bento' ? 'Project Grid Layout' : mode === '2026' ? 'Spatial UI Experiment' : mode === 'command' ? 'Spatial Command Center' : mode === 'fluid' ? 'Fluid Motion Systems' : mode === 'neural' ? 'Neural Brain Visualizer' : 'Performance Telemetry'}
           </motion.h2>
@@ -129,7 +129,7 @@ export default function App() {
             key={`${mode}-desc`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className={cn("max-w-2xl text-lg leading-relaxed mx-auto md:mx-0", currentStyles.muted)}
+            className={cn("max-w-2xl text-lg leading-relaxed mx-auto md:mx-0 break-words", currentStyles.muted)}
           >
             {mode === 'app' 
               ? 'Real-time telemetry and resource allocation interface for enterprise-scale infrastructure.' 
@@ -152,76 +152,47 @@ export default function App() {
         <AnimatePresence mode="wait">
           <motion.div
             key={mode}
+            data-testid="view-container"
             initial={{ opacity: 0, scale: 0.98, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 1.02, y: -10 }}
             transition={{ type: "spring", stiffness: 200, damping: 25 }}
+            className="w-full"
           >
             {mode === 'app' ? <AppView /> : mode === 'game' ? <GameView /> : mode === 'bento' ? <BentoView /> : mode === '2026' ? <Trends2026View /> : mode === 'command' ? <SpatialCommandCenter /> : mode === 'fluid' ? <FluidView /> : mode === 'neural' ? <NeuralView /> : <FitnessTracker />}
           </motion.div>
         </AnimatePresence>
 
-        {/* Skill Verification Footer */}
-        <footer className={cn("mt-24 pt-12 border-t", currentStyles.border)}>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div className="space-y-6">
-              <h3 className={cn(TOKENS.typography.microLabel, currentStyles.text)}>Design Token Audit</h3>
-              <div className="flex flex-wrap gap-2">
-                {Object.entries(mode === 'game' ? TOKENS.colors.game : TOKENS.colors.app).map(([key, val]) => (
-                  <div key={key} className={cn("px-4 py-2 rounded-xl border text-[10px] font-mono", currentStyles.border, currentStyles.muted)}>
-                    {key}: {val}
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="space-y-6">
-              <h3 className={cn(TOKENS.typography.microLabel, currentStyles.text)}>Self-Learning Loop</h3>
-              <Card mode={designMode(mode)} className={cn("text-[11px] font-mono leading-relaxed p-6", currentStyles.text, "opacity-70")}>
-                {mode === 'app' 
-                  ? "LOG: High-density workflow detected. RULE: Apply 4px sub-grid alignment. RESULT: Improved scanability for telemetry data."
-                  : mode === 'game'
-                  ? "LOG: Landscape action context. RULE: Enforce 24px safe-area offsets for HUD anchors. RESULT: Prevented thumb occlusion."
-                  : mode === 'bento'
-                  ? "LOG: Multi-format grid. RULE: Enforce 2:1 aspect ratio for hero cells. RESULT: Balanced visual hierarchy."
-                  : mode === '2026'
-                  ? "LOG: Spatial UI context. RULE: Use white/[0.02] for refractive surfaces. RESULT: Avoided 'sludge' aesthetic while maintaining depth."
-                  : mode === 'command'
-                  ? "LOG: Contrast audit failure. RULE: Upgrade 'muted' token from slate-500 to slate-400 and increase surface opacity. RESULT: Guaranteed text readability across all themes."
-                  : mode === 'fluid'
-                  ? "LOG: Fluid Motion context. RULE: Use physics-based springs for all layout transitions. RESULT: Natural, responsive feel."
-                  : mode === 'neural'
-                  ? "LOG: Neural Brain context. RULE: Use SVG pathLength for synapse flow. RESULT: High-fidelity brain visualizer."
-                  : mode === 'command'
-                  ? "LOG: Stitch Alignment audit. RULE: Normalize atmospheric and density tokens. RESULT: Unified design DNA across all platforms."
-                  : "LOG: Responsive audit failure. RULE: Implement 'layout.mobileNav' with overflow-x-auto. RESULT: Zero text cutoff on 375px viewports."}
-              </Card>
-            </div>
-            <div className="space-y-6">
-              <h3 className={cn(TOKENS.typography.microLabel, currentStyles.text)}>Visual Audit (Simulated)</h3>
-              <div className={cn("p-6 rounded-[32px] border space-y-4", currentStyles.border, currentStyles.surface)}>
-                <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest text-slate-500">
-                  <span>Screen</span>
-                  <span>Status</span>
-                </div>
-                {[
-                  { name: 'Dashboard', status: 'Verified' },
-                  { name: 'Combat HUD', status: 'Verified' },
-                  { name: 'Bento Grid', status: 'Verified' },
-                  { name: 'Spatial UI', status: 'Verified' },
-                  { name: 'Fluid Motion', status: 'Verified' },
-                  { name: 'Neural Brain', status: 'Verified' },
-                  { name: 'Mobile Nav', status: 'Optimized' },
-                  { name: 'Stitch Tokens', status: 'Aligned' }
-                ].map((s) => (
-                  <div key={s.name} className="flex justify-between items-center py-2 border-b border-white/5 last:border-0">
-                    <span className={cn("text-xs font-medium", currentStyles.text)}>{s.name}</span>
-                    <span className={cn("text-[10px] font-bold", s.status === 'Optimized' || s.status === 'Aligned' ? 'text-blue-400' : 'text-emerald-500')}>● {s.status}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+        {/* Live Training Data Feed */}
+        <div data-testid="training-feed" className="mt-12 border-t border-white/10 pt-8 pb-12">
+          <div className="flex items-center gap-4 mb-6 opacity-80">
+            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
+            <span className="text-[10px] font-mono uppercase tracking-[0.4em] text-white font-bold">Neural Training Data Feed</span>
           </div>
-        </footer>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+            {[...Array(6)].map((_, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: [0.4, 0.8, 0.4] }}
+                transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
+                className={cn("font-mono text-[10px] p-4 rounded-xl border backdrop-blur-md", currentStyles.border, "bg-white/10", "text-white")}
+              >
+                <div className="flex justify-between mb-2">
+                  <span className="font-bold opacity-90">LAYER_{i}</span>
+                  <span className="text-blue-400 font-bold">{(Math.random() * 0.9).toFixed(4)}</span>
+                </div>
+                <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
+                  <motion.div 
+                    animate={{ width: [`${Math.random() * 100}%`, `${Math.random() * 100}%`] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="h-full bg-blue-400 shadow-[0_0_8px_rgba(96,165,250,0.6)]"
+                  />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </main>
     </div>
   );

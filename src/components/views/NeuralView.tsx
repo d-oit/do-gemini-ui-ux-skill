@@ -18,12 +18,12 @@ export const NeuralView = () => {
   const [isOptimizing, setIsOptimizing] = useState(false);
   const [optimizationComplete, setOptimizationComplete] = useState(false);
   const [neurons, setNeurons] = useState<Neuron[]>([
-    { id: 1, x: 50, y: 50, label: 'Central Cortex', load: 78, type: 'core' },
-    { id: 2, x: 30, y: 30, label: 'Logic Gate A', load: 45, type: 'logic' },
-    { id: 3, x: 70, y: 30, label: 'Logic Gate B', load: 92, type: 'logic' },
-    { id: 4, x: 20, y: 60, label: 'Memory Bank 1', load: 12, type: 'memory' },
-    { id: 5, x: 80, y: 60, label: 'Memory Bank 2', load: 64, type: 'memory' },
-    { id: 6, x: 50, y: 80, label: 'Output Buffer', load: 33, type: 'core' },
+    { id: 1, x: 50, y: 60, label: 'Central Cortex', load: 78, type: 'core' },
+    { id: 2, x: 85, y: 55, label: 'Logic Gate A', load: 45, type: 'logic' },
+    { id: 3, x: 80, y: 75, label: 'Logic Gate B', load: 92, type: 'logic' },
+    { id: 4, x: 20, y: 85, label: 'Memory Bank 1', load: 12, type: 'memory' },
+    { id: 5, x: 75, y: 90, label: 'Memory Bank 2', load: 64, type: 'memory' },
+    { id: 6, x: 45, y: 85, label: 'Output Buffer', load: 33, type: 'core' },
   ]);
 
   const filteredNeurons = useMemo(() => {
@@ -53,9 +53,9 @@ export const NeuralView = () => {
   const styles = TOKENS.colors.neural;
 
   return (
-    <div className={cn("grid grid-cols-1 lg:grid-cols-12 gap-8 min-h-[600px]", TOKENS.layout.safeArea)}>
+    <div className={cn("grid grid-cols-1 lg:grid-cols-12 gap-8 w-full", TOKENS.layout.safeArea)}>
       {/* BRAIN VISUALIZER (7 COLUMNS) */}
-      <div className={cn("lg:col-span-7 relative h-[400px] lg:h-[600px] rounded-[40px] border overflow-hidden group shadow-2xl", TOKENS.effects.antiFlicker)} style={{ backgroundColor: '#020617' }}>
+      <div className={cn("lg:col-span-7 relative h-[500px] lg:h-[600px] rounded-[40px] border overflow-hidden group shadow-2xl", TOKENS.effects.antiFlicker)} style={{ backgroundColor: '#020617' }}>
         <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_50%_50%,#4f46e5,transparent_70%)]" />
         
         {/* SVG CONNECTIONS */}
@@ -122,49 +122,55 @@ export const NeuralView = () => {
             className="absolute -translate-x-1/2 -translate-y-1/2 z-10"
           >
             <div className={cn(
-              "w-12 h-12 rounded-full border flex items-center justify-center relative transition-all duration-500",
+              "w-12 h-12 rounded-full border flex items-center justify-center relative transition-all duration-500 shadow-[0_0_20px_rgba(0,0,0,0.5)]",
               TOKENS.atmospheric.glass.blur,
-              selectedNeuron?.id === n.id ? 'scale-110 border-white bg-white/20' : 
-              n.type === 'core' ? 'border-cyan-500/50 bg-cyan-500/10' : 
-              n.type === 'logic' ? 'border-fuchsia-500/50 bg-fuchsia-500/10' : 
-              'border-indigo-500/50 bg-indigo-500/10'
+              selectedNeuron?.id === n.id ? 'scale-110 border-white bg-white/30' : 
+              n.type === 'core' ? 'border-cyan-500/60 bg-cyan-500/20' : 
+              n.type === 'logic' ? 'border-fuchsia-500/60 bg-fuchsia-500/20' : 
+              'border-indigo-500/60 bg-indigo-500/20'
             )}>
               {/* Pulse Ring */}
               <motion.div 
-                animate={{ scale: [1, 1.6, 1], opacity: [0.4, 0, 0.4] }}
+                animate={{ scale: [1, 1.8, 1], opacity: [0.6, 0, 0.6] }}
                 transition={{ duration: 2.5, repeat: Infinity }}
                 className={cn(
-                  "absolute inset-0 rounded-full border",
-                  n.type === 'core' ? 'border-cyan-400' : 
-                  n.type === 'logic' ? 'border-fuchsia-400' : 
-                  'border-indigo-400'
+                  "absolute inset-0 rounded-full border-2",
+                  n.type === 'core' ? 'border-cyan-400/50' : 
+                  n.type === 'logic' ? 'border-fuchsia-400/50' : 
+                  'border-indigo-400/50'
                 )}
               />
-              {n.type === 'core' ? <Brain size={18} className="text-cyan-400" /> : 
-               n.type === 'logic' ? <Zap size={18} className="text-fuchsia-400" /> : 
-               <Cpu size={18} className="text-indigo-400" />}
+              {n.type === 'core' ? <Brain size={20} className="text-cyan-300 drop-shadow-[0_0_8px_rgba(103,232,249,0.5)]" /> : 
+               n.type === 'logic' ? <Zap size={20} className="text-fuchsia-300 drop-shadow-[0_0_8px_rgba(240,171,252,0.5)]" /> : 
+               <Cpu size={20} className="text-indigo-300 drop-shadow-[0_0_8px_rgba(165,180,252,0.5)]" />}
             </div>
-            <span className={cn(TOKENS.typography.microLabel, "absolute top-14 left-1/2 -translate-x-1/2 whitespace-nowrap text-white/60 font-medium")}>
+            <span className={cn(
+              TOKENS.typography.microLabel, 
+              "absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap text-white font-bold tracking-[0.2em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
+            )}>
               {n.label}
             </span>
           </motion.button>
         ))}
 
         {/* HUD OVERLAY */}
-        <div className="absolute top-6 left-6 p-4 rounded-2xl border bg-black/60 backdrop-blur-2xl border-white/10 space-y-3 min-w-[200px]">
+        <div className={cn(
+          "absolute top-4 left-4 md:top-8 md:left-8 p-4 md:p-6 rounded-2xl md:rounded-3xl border bg-black/90 backdrop-blur-3xl border-white/20 space-y-3 md:space-y-4 w-[calc(100%-32px)] md:w-72 z-20 shadow-2xl",
+          TOKENS.effects.antiFlicker
+        )}>
           <div className="space-y-1">
-            <p className={cn(TOKENS.typography.microLabel, "text-cyan-400")}>Neural Status</p>
-            <p className="text-xl font-bold text-white tracking-tighter">Synchronized</p>
+            <p className={cn(TOKENS.typography.microLabel, "text-cyan-400 font-bold")}>Neural Status</p>
+            <p className="text-lg md:text-2xl font-bold text-white tracking-tighter drop-shadow-sm">Synchronized</p>
           </div>
           
           <div className="relative group">
-            <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-cyan-400 transition-colors" />
+            <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 group-focus-within:text-cyan-400 transition-colors" />
             <input 
               type="text"
               placeholder="Search neurons..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-white/5 border border-white/10 rounded-xl py-2 pl-9 pr-3 text-[10px] text-white placeholder:text-white/20 focus:outline-none focus:border-cyan-500/50 focus:bg-white/10 transition-all"
+              className="w-full bg-white/10 border border-white/20 rounded-2xl py-3 pl-11 pr-4 text-xs text-white placeholder:text-white/50 focus:outline-none focus:border-cyan-500/50 focus:bg-white/20 transition-all font-medium"
             />
           </div>
         </div>

@@ -6,13 +6,16 @@
 
 # Test info
 
-- Name: neural.spec.ts >> Neural Brain Visualizer Tests >> Search functionality filters neurons
-- Location: tests/neural.spec.ts:11:3
+- Name: debug_mobile.spec.ts >> Verify mobile visibility and overlap
+- Location: tests/debug_mobile.spec.ts:3:1
 
 # Error details
 
 ```
-Error: expect: Property 'toBeClickable' not found.
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: false
+Received: true
 ```
 
 # Page snapshot
@@ -21,18 +24,16 @@ Error: expect: Property 'toBeClickable' not found.
 - generic [ref=e3]:
   - banner [ref=e4]:
     - generic [ref=e5]:
-      - generic [ref=e6]:
-        - img [ref=e8]
-        - heading "UI/UX OPTIMIZE" [level=1] [ref=e10]
-      - navigation [ref=e11]:
-        - button "app" [ref=e12]
-        - button "game" [ref=e13]
-        - button "bento" [ref=e14]
-        - button "2026" [ref=e15]
-        - button "command" [ref=e16]
-        - button "fluid" [ref=e17]
-        - button "neural" [active] [ref=e18]: neural
-        - button "fitness" [ref=e20]
+      - img [ref=e8]
+      - navigation [ref=e10]:
+        - button "app" [ref=e11]
+        - button "game" [ref=e12]
+        - button "bento" [ref=e13]
+        - button "2026" [ref=e14]
+        - button "command" [ref=e15]
+        - button "fluid" [ref=e16]
+        - button "neural" [active] [ref=e17]: neural
+        - button "fitness" [ref=e19]
   - main [ref=e21]:
     - generic [ref=e22]:
       - generic [ref=e24]: Neural Network
@@ -102,22 +103,22 @@ Error: expect: Property 'toBeClickable' not found.
       - generic [ref=e136]:
         - generic [ref=e138]:
           - generic [ref=e139]: LAYER_0
-          - generic [ref=e140]: "0.5473"
+          - generic [ref=e140]: "0.4245"
         - generic [ref=e144]:
           - generic [ref=e145]: LAYER_1
-          - generic [ref=e146]: "0.1569"
+          - generic [ref=e146]: "0.8649"
         - generic [ref=e150]:
           - generic [ref=e151]: LAYER_2
-          - generic [ref=e152]: "0.5197"
+          - generic [ref=e152]: "0.3590"
         - generic [ref=e156]:
           - generic [ref=e157]: LAYER_3
-          - generic [ref=e158]: "0.0187"
+          - generic [ref=e158]: "0.2912"
         - generic [ref=e162]:
           - generic [ref=e163]: LAYER_4
-          - generic [ref=e164]: "0.6366"
+          - generic [ref=e164]: "0.4957"
         - generic [ref=e168]:
           - generic [ref=e169]: LAYER_5
-          - generic [ref=e170]: "0.7932"
+          - generic [ref=e170]: "0.7382"
 ```
 
 # Test source
@@ -125,57 +126,53 @@ Error: expect: Property 'toBeClickable' not found.
 ```ts
   1  | import { test, expect } from '@playwright/test';
   2  | 
-  3  | test.describe('Neural Brain Visualizer Tests', () => {
-  4  |   test.beforeEach(async ({ page }) => {
-  5  |     await page.goto('/');
-  6  |     // Switch to neural mode
-  7  |     await page.click('button:has-text("neural")');
-  8  |     await page.waitForTimeout(1000);
-  9  |   });
-  10 | 
-  11 |   test('Search functionality filters neurons', async ({ page }) => {
-  12 |     const searchInput = page.locator('input[placeholder="Search neurons..."]');
-  13 |     
-  14 |     // Ensure input is not obscured by neurons (overlap check)
-> 15 |     await expect(searchInput).toBeClickable();
-     |                              ^ Error: expect: Property 'toBeClickable' not found.
-  16 |     
-  17 |     await searchInput.fill('Central');
-  18 |     
-  19 |     // Should see Central Cortex (use exact match to avoid log entries)
-  20 |     await expect(page.getByText('Central Cortex', { exact: true })).toBeVisible();
+  3  | test('Verify mobile visibility and overlap', async ({ page }) => {
+  4  |   await page.setViewportSize({ width: 375, height: 667 });
+  5  |   await page.goto('/');
+  6  |   await page.click('button:has-text("neural")');
+  7  |   await page.waitForTimeout(1000);
+  8  | 
+  9  |   const visualizer = page.locator('.lg\\:col-span-7').first();
+  10 |   const hud = visualizer.locator('.z-20').first();
+  11 |   const hudBox = await hud.boundingBox();
+  12 |   console.log('Mobile HUD Box:', hudBox);
+  13 |   
+  14 |   const neurons = visualizer.locator('button.z-10');
+  15 |   const count = await neurons.count();
+  16 |   console.log(`Found ${count} neurons`);
+  17 |   
+  18 |   for (let i = 0; i < count; i++) {
+  19 |     const neuron = neurons.nth(i);
+  20 |     const neuronBox = await neuron.boundingBox();
   21 |     
-  22 |     // Should NOT see Logic Gate A
-  23 |     await expect(page.getByText('Logic Gate A', { exact: true })).not.toBeVisible();
-  24 |   });
-  25 | 
-  26 |   test('Optimization process updates load values', async ({ page }) => {
-  27 |     // Click Optimize button
-  28 |     await page.getByRole('button', { name: /Optimize Network/i }).click();
-  29 |     
-  30 |     // Should show "Optimizing..."
-  31 |     await expect(page.getByText('Optimizing...', { exact: true })).toBeVisible();
-  32 |     
-  33 |     // Wait for optimization to complete (simulated 2s)
-  34 |     await page.waitForTimeout(3000);
-  35 |     
-  36 |     // Should show "Optimization Complete" (use exact match to avoid log entries)
-  37 |     await expect(page.getByText('Optimization Complete', { exact: true })).toBeVisible();
-  38 |   });
-  39 | 
-  40 |   test('Visual regression - Neural Mode', async ({ page }) => {
-  41 |     // Wait for animations to settle
-  42 |     await page.waitForTimeout(2000);
-  43 |     // Mask the brain visualizer and logs as they are dynamic/animated
-  44 |     await expect(page).toHaveScreenshot('neural-visualizer.png', {
-  45 |       mask: [
-  46 |         page.locator('svg'), 
-  47 |         page.locator('.lg\\:col-span-7'), // Brain visualizer container
-  48 |         page.locator('font-mono') // System logs
-  49 |       ],
-  50 |       animations: 'disabled'
-  51 |     });
-  52 |   });
-  53 | });
-  54 | 
+  22 |     // Check label visibility
+  23 |     const label = neuron.locator('span');
+  24 |     await expect(label).toBeVisible();
+  25 |     const labelBox = await label.boundingBox();
+  26 |     
+  27 |     if (neuronBox && hudBox) {
+  28 |       const overlaps = !(
+  29 |         neuronBox.x + neuronBox.width < hudBox.x ||
+  30 |         neuronBox.x > hudBox.x + hudBox.width ||
+  31 |         neuronBox.y + neuronBox.height < hudBox.y ||
+  32 |         neuronBox.y > hudBox.y + hudBox.height
+  33 |       );
+  34 |       console.log(`Neuron ${i} overlaps HUD: ${overlaps}`);
+> 35 |       expect(overlaps).toBe(false);
+     |                        ^ Error: expect(received).toBe(expected) // Object.is equality
+  36 |     }
+  37 |     
+  38 |     if (labelBox && hudBox) {
+  39 |       const overlaps = !(
+  40 |         labelBox.x + labelBox.width < hudBox.x ||
+  41 |         labelBox.x > hudBox.x + hudBox.width ||
+  42 |         labelBox.y + labelBox.height < hudBox.y ||
+  43 |         labelBox.y > hudBox.y + hudBox.height
+  44 |       );
+  45 |       console.log(`Label ${i} overlaps HUD: ${overlaps}`);
+  46 |       expect(overlaps).toBe(false);
+  47 |     }
+  48 |   }
+  49 | });
+  50 | 
 ```

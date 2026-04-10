@@ -10,6 +10,11 @@ test.describe('Neural Brain Visualizer Tests', () => {
 
   test('Search functionality filters neurons', async ({ page }) => {
     const searchInput = page.locator('input[placeholder="Search neurons..."]');
+    
+    // Ensure input is visible and clickable (not obscured by neurons)
+    await expect(searchInput).toBeVisible();
+    await searchInput.click();
+    
     await searchInput.fill('Central');
     
     // Should see Central Cortex (use exact match to avoid log entries)

@@ -36,9 +36,10 @@ export const TOKENS = {
       surface: 'bg-indigo-500/5',
       primary: 'bg-cyan-500',
       text: 'text-cyan-50',
-      muted: 'text-indigo-300/50',
+      muted: 'text-indigo-300/60',
       border: 'border-indigo-500/20',
       accent: 'text-fuchsia-400',
+      contrastText: 'text-white',
     },
     technical: {
       bg: 'bg-[#E4E3E0]',
@@ -83,6 +84,7 @@ export const TOKENS = {
     glassRefractive: 'backdrop-blur-[80px] bg-white/[0.01] border border-white/[0.1] shadow-[0_0_50px_rgba(0,0,0,0.5)]',
     shimmer: 'absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none',
     antiFlicker: 'will-change-transform transform-gpu backface-visibility-hidden',
+    highContrast: 'text-shadow-[0_0_20px_rgba(255,255,255,0.3)]',
     haptic: {
       hover: { scale: 1.02, y: -2 },
       tap: { scale: 0.98, y: 1 },
@@ -103,15 +105,16 @@ export const TOKENS = {
   },
   typography: {
     microLabel: 'text-[10px] font-bold uppercase tracking-[0.3em]',
-    heading: 'text-3xl md:text-6xl font-bold tracking-tighter leading-[1.1]',
+    heading: 'text-2xl sm:text-3xl md:text-6xl font-bold tracking-tighter leading-[1.1]',
     body: 'text-sm md:text-base leading-relaxed',
     mono: 'font-mono tracking-tight',
   },
   layout: {
-    container: 'max-w-6xl mx-auto px-4 md:px-6',
+    container: 'w-full max-w-6xl mx-auto px-4 md:px-6',
     section: 'py-12 md:py-24',
     mobileNav: 'overflow-x-auto no-scrollbar flex-nowrap scroll-smooth',
     safeArea: 'pb-safe pt-safe',
+    hudSafeZone: 'p-6 md:p-10',
   },
   motion: {
     spring: { type: "spring", stiffness: 300, damping: 30 },

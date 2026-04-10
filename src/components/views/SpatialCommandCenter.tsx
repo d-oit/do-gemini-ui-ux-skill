@@ -39,7 +39,7 @@ export const SpatialCommandCenter = () => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={cn(
-        "relative p-6 md:p-12 rounded-[40px] md:rounded-[60px] bg-[#020408] border border-white/5 overflow-hidden min-h-[600px] md:min-h-[700px] flex items-center justify-center",
+        "relative p-6 md:p-12 rounded-[40px] md:rounded-[60px] bg-[#020408] border border-white/5 overflow-hidden flex items-center justify-center",
         TOKENS.effects.glassRefractive,
         TOKENS.effects.antiFlicker
       )}
@@ -157,7 +157,9 @@ export const SpatialCommandCenter = () => {
                 )}>
                   Neural Telemetry
                 </div>
-                <h4 className={cn(TOKENS.typography.heading, "text-white")}>Network <br /> Synchronization</h4>
+                <h4 className={cn("text-2xl md:text-4xl lg:text-6xl font-bold tracking-tighter leading-[1.1] text-white break-words")}>
+                  Network <br /> Synchronization
+                </h4>
                 <p className={cn(TOKENS.typography.body, TOKENS.colors.app.muted, "max-w-sm")}>
                   Real-time visualization of distributed neural nodes and cross-region data propagation.
                 </p>
