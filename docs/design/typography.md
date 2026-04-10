@@ -5,9 +5,11 @@
 ### H1: Display
 - **Font:** Anton
 - **Size:** 24vw (Hero), 80px (Section)
+- **Responsive:** `text-2xl sm:text-3xl md:text-6xl` for section headers
 - **Line Height:** 0.82
 - **Letter Spacing:** -0.02em
 - **Transform:** Uppercase
+- **Alignment:** `text-center` on mobile, `text-left` on desktop
 
 ### H2: Section Header
 - **Font:** Georgia (Italic)

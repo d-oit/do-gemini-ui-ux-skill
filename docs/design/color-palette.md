@@ -10,3 +10,5 @@
 - **Warning:** #FFD700
 - **Error:** #FF4444
 - **Info:** #00D1FF
+- **Overlay:** `bg-black/90` (High contrast backdrop for HUDs)
+- **Contrast Text:** `text-cyan-50` or `text-white` (For readability on dark surfaces)

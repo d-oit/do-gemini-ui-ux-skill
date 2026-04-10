@@ -21,6 +21,7 @@ This document is the persistent source of truth for the UI/UX design tokens.
 - **Surface:** `bg-indigo-500/5`
 - **Primary:** `bg-cyan-500`
 - **Accent:** `text-fuchsia-400`
+- **ContrastText:** `text-white` (For overlays)
 
 ### 4. Technical (Fitness Telemetry)
 - **Background:** `#E4E3E0`
@@ -42,3 +43,4 @@ This document is the persistent source of truth for the UI/UX design tokens.
 - **Container:** `max-w-6xl mx-auto px-4 md:px-6`
 - **Gap:** `gap-4 md:gap-6`
 - **Radius:** `rounded-[32px]` (App), `rounded-sm` (Game)
+- **HUD Safe Zone:** `p-6 md:p-10` (Padding for absolute overlays)
