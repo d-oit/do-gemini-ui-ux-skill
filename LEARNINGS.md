@@ -16,6 +16,9 @@ This document summarizes the key technical and design learnings from the optimiz
 - **Label Positioning**: Position labels relative to nodes in a way that avoids intersection with connection lines. Placing labels *above* nodes with a slight offset and a subtle drop-shadow often provides the best clarity in dense network visualizations.
 - **Viewport Constraints**: On mobile devices, ensure that absolute-positioned HUDs have dynamic offsets (e.g., `top-4 left-4`) and reduced minimum widths or responsive scaling to prevent them from being clipped by the container's `overflow-hidden` property.
 - **Default Backgrounds**: Always set a default background color on the `body` (e.g., `bg-slate-950`) that matches the app's primary theme. This prevents white flashes during transitions or gaps if content fails to fill the viewport.
+- **High-Density Telemetry**: For technical/fitness interfaces, use a "Spatial Grid" background (e.g., `bg-[size:40px_40px]`) with low opacity to provide a sense of scale and precision. Pair this with micro-labels (`text-[10px] uppercase tracking-widest`) for a professional, data-driven feel.
+- **Font Pairing for Impact**: Avoid generic defaults. Pairing a bold, condensed display font (e.g., `Anton`) with a high-fidelity monospaced font (e.g., `JetBrains Mono`) creates a strong "technical/premium" contrast that eliminates "AI slop" aesthetics.
+- **Dynamic Data Feedback**: Use `AnimatePresence` for data value changes (e.g., heart rate) to provide smooth, non-flickering transitions that reinforce the "live" nature of the telemetry.
 
 ## 2. Component Architecture
 - **Nested Viewport Conflicts**: Avoid using `min-h-screen` inside sub-components that are rendered within a scrollable parent. This often leads to double scrollbars. Use `min-h-full` or flexible layouts for sub-components.

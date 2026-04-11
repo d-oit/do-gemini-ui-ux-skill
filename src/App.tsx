@@ -15,12 +15,13 @@ import { Trends2026View } from './components/views/Trends2026View';
 import { SpatialCommandCenter } from './components/views/SpatialCommandCenter';
 import { FluidView } from './components/views/FluidView';
 import { NeuralView } from './components/views/NeuralView';
+import { VerificationView } from './components/views/VerificationView';
 import FitnessTracker from './FitnessTracker';
 
 // --- MAIN APP ---
 
 export default function App() {
-  const [mode, setMode] = useState<'app' | 'game' | 'bento' | '2026' | 'command' | 'fluid' | 'neural' | 'fitness'>('app');
+  const [mode, setMode] = useState<'app' | 'game' | 'bento' | '2026' | 'command' | 'fluid' | 'neural' | 'fitness' | 'verify'>('app');
   
   const currentStyles = mode === 'game' ? TOKENS.colors.game : mode === 'neural' ? TOKENS.colors.neural : mode === 'fitness' ? TOKENS.colors.technical : TOKENS.colors.app;
   
@@ -71,7 +72,7 @@ export default function App() {
             "flex bg-white/5 p-1 rounded-xl md:rounded-2xl border border-white/5",
             TOKENS.layout.mobileNav
           )}>
-            {(['app', 'game', 'bento', '2026', 'command', 'fluid', 'neural', 'fitness'] as const).map(m => (
+            {(['app', 'game', 'bento', '2026', 'command', 'fluid', 'neural', 'fitness', 'verify'] as const).map(m => (
               <button 
                 key={m}
                 onClick={() => setMode(m)}
@@ -111,7 +112,7 @@ export default function App() {
             className="flex items-center gap-4 justify-center md:justify-start"
           >
             <span className={cn(TOKENS.typography.microLabel, "text-blue-400/60")}>
-              {mode === 'app' ? 'Production Dashboard' : mode === 'game' ? 'Gameplay Interface' : mode === 'bento' ? 'Bento Grid Layout' : mode === '2026' ? 'Atmospheric Depth' : mode === 'command' ? 'Spatial Command' : mode === 'fluid' ? 'Fluid Dynamics' : mode === 'neural' ? 'Neural Network' : 'Fitness Telemetry'}
+              {mode === 'app' ? 'Production Dashboard' : mode === 'game' ? 'Gameplay Interface' : mode === 'bento' ? 'Bento Grid Layout' : mode === '2026' ? 'Atmospheric Depth' : mode === 'command' ? 'Spatial Command' : mode === 'fluid' ? 'Fluid Dynamics' : mode === 'neural' ? 'Neural Network' : mode === 'fitness' ? 'Fitness Telemetry' : 'Skill Verification'}
             </span>
             <span className={cn("h-px w-12", currentStyles.border)} />
           </motion.div>
@@ -122,7 +123,7 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             className={cn(TOKENS.typography.heading, currentStyles.text, "break-words max-w-full text-center md:text-left")}
           >
-            {mode === 'app' ? 'System Performance Monitor' : mode === 'game' ? 'Tactical Combat HUD' : mode === 'bento' ? 'Project Grid Layout' : mode === '2026' ? 'Spatial UI Experiment' : mode === 'command' ? 'Spatial Command Center' : mode === 'fluid' ? 'Fluid Motion Systems' : mode === 'neural' ? 'Neural Brain Visualizer' : 'Performance Telemetry'}
+            {mode === 'app' ? 'System Performance Monitor' : mode === 'game' ? 'Tactical Combat HUD' : mode === 'bento' ? 'Project Grid Layout' : mode === '2026' ? 'Spatial UI Experiment' : mode === 'command' ? 'Spatial Command Center' : mode === 'fluid' ? 'Fluid Motion Systems' : mode === 'neural' ? 'Neural Brain Visualizer' : mode === 'fitness' ? 'Performance Telemetry' : 'Skill Architecture Verification'}
           </motion.h2>
           
           <motion.p 
@@ -145,7 +146,9 @@ export default function App() {
               ? 'Physics-based animations and Dynamic Island 2.0 components for ultra-responsive feedback.'
               : mode === 'neural'
               ? 'Interactive neural network simulation visualizing synaptic load and core processing nodes.'
-              : 'High-density performance tracking for elite athletes and health-conscious users.'}
+              : mode === 'fitness'
+              ? 'High-density performance tracking for elite athletes and health-conscious users.'
+              : 'Validating the UI/UX Prompt Optimizer workflow, swarm architecture, and quality bar compliance.'}
           </motion.p>
         </section>
 
@@ -159,7 +162,7 @@ export default function App() {
             transition={{ type: "spring", stiffness: 200, damping: 25 }}
             className="w-full"
           >
-            {mode === 'app' ? <AppView /> : mode === 'game' ? <GameView /> : mode === 'bento' ? <BentoView /> : mode === '2026' ? <Trends2026View /> : mode === 'command' ? <SpatialCommandCenter /> : mode === 'fluid' ? <FluidView /> : mode === 'neural' ? <NeuralView /> : <FitnessTracker />}
+            {mode === 'app' ? <AppView /> : mode === 'game' ? <GameView /> : mode === 'bento' ? <BentoView /> : mode === '2026' ? <Trends2026View /> : mode === 'command' ? <SpatialCommandCenter /> : mode === 'fluid' ? <FluidView /> : mode === 'neural' ? <NeuralView /> : mode === 'fitness' ? <FitnessTracker /> : <VerificationView />}
           </motion.div>
         </AnimatePresence>
 
