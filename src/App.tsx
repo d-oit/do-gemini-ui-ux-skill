@@ -104,7 +104,7 @@ export default function App() {
         </div>
       </header>
 
-      <main className={cn(TOKENS.layout.container, "pt-24 md:pt-32 pb-12 relative z-10")}>
+      <main className={cn(TOKENS.layout.container, "pt-24 md:pt-32 pb-6 relative z-10")}>
         <section className="space-y-2 text-center md:text-left mb-8 md:mb-12">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
@@ -167,7 +167,7 @@ export default function App() {
         </AnimatePresence>
 
         {/* Live Training Data Feed */}
-        <div data-testid="training-feed" className="mt-12 border-t border-white/10 pt-8 pb-12">
+        <div data-testid="training-feed" className="mt-12 border-t border-white/10 pt-8 pb-6">
           <div className="flex items-center gap-4 mb-6 opacity-80">
             <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
             <span className="text-[10px] font-mono uppercase tracking-[0.4em] text-white font-bold">Neural Training Data Feed</span>

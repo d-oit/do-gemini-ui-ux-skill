@@ -23,7 +23,7 @@ const FitnessTracker = () => {
   const styles = TOKENS.colors.technical;
 
   return (
-    <div className={cn(styles.bg, 'p-4 md:p-8 font-sans min-h-screen relative overflow-hidden', TOKENS.effects.antiFlicker)}>
+    <div className={cn(styles.bg, 'p-4 md:p-8 font-sans relative overflow-hidden', TOKENS.effects.antiFlicker)}>
       {/* SPATIAL GRID BACKGROUND */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(to_right,#141414_1px,transparent_1px),linear-gradient(to_bottom,#141414_1px,transparent_1px)] bg-[size:40px_40px]" />
       
