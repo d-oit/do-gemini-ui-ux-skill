@@ -41,10 +41,10 @@ export const VerificationView = () => {
   ];
 
   return (
-    <div className={cn("space-y-12", TOKENS.effects.antiFlicker)}>
+    <div className={cn("space-y-12")}>
       {/* Quality Bar Section */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <Card mode="app" className="relative overflow-hidden group">
+        <Card mode="app" className="relative group">
           <div className={TOKENS.effects.shimmer} />
           <div className="space-y-6">
             <div className="flex items-center gap-3">
@@ -64,7 +64,7 @@ export const VerificationView = () => {
           </div>
         </Card>
 
-        <Card mode="app" className="relative overflow-hidden group">
+        <Card mode="app" className="relative group">
           <div className={TOKENS.effects.shimmer} />
           <div className="space-y-6">
             <div className="flex items-center gap-3">
@@ -97,7 +97,7 @@ export const VerificationView = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
             >
-              <Card mode="app" className="h-full hover:border-white/20 transition-colors group">
+              <Card mode="app" className="hover:border-white/20 transition-colors group">
                 <div className="space-y-4">
                   <div className={cn("w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform", persona.color)}>
                     {persona.icon}
@@ -113,8 +113,7 @@ export const VerificationView = () => {
 
       {/* Verification Status */}
       <div className={cn(
-        "p-6 rounded-[32px] border border-emerald-500/20 bg-emerald-500/5 flex flex-col md:flex-row items-center justify-between gap-6",
-        TOKENS.effects.antiFlicker
+        "p-6 rounded-[32px] border border-emerald-500/20 bg-emerald-500/5 flex flex-col md:flex-row items-center justify-between gap-6"
       )}>
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 rounded-full bg-emerald-500 flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.4)]">

@@ -4,15 +4,14 @@ import { Activity, Users, Settings } from 'lucide-react';
 import { Card, TOKENS, cn } from '../../lib/design-system';
 
 export const BentoView = () => (
-  <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-6 h-auto md:h-[600px] p-4" style={{ perspective: 1200 }}>
+  <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-6 h-auto p-4" style={{ perspective: 1200 }}>
     {/* Hero Cell (2x2) - Refractive Performance */}
     <motion.div 
-      layout
       whileHover={{ scale: 1.02, rotateY: -5, translateZ: 40 }}
-      className={cn("md:col-span-2 md:row-span-2 group", TOKENS.effects.antiFlicker)}
+      className="md:col-span-2 md:row-span-2 group"
     >
       <Card mode="app" className={cn(
-        "h-full flex flex-col justify-between text-white cursor-pointer relative overflow-hidden p-10",
+        "flex flex-col justify-between text-white cursor-pointer relative p-10",
         TOKENS.colors.app.bg,
         TOKENS.colors.app.border,
         TOKENS.radius.app
@@ -67,12 +66,11 @@ export const BentoView = () => (
 
     {/* Secondary Cells - Spatial Storage */}
     <motion.div 
-      layout 
       whileHover={{ scale: 1.03, translateZ: 30, rotateX: 5 }} 
       className="md:col-span-2 group"
     >
       <Card mode="app" className={cn(
-        "h-full flex items-center justify-between cursor-pointer p-8 border",
+        "flex items-center justify-between cursor-pointer p-8 border",
         TOKENS.atmospheric.glass.blur,
         TOKENS.colors.app.surface,
         TOKENS.colors.app.border
@@ -108,12 +106,11 @@ export const BentoView = () => (
 
     {/* Active Admins - Glass Morphism */}
     <motion.div 
-      layout 
       whileHover={{ scale: 1.05, translateZ: 50 }}
       className="group"
     >
       <Card mode="app" className={cn(
-        "h-full flex flex-col justify-center items-center text-center space-y-4 cursor-pointer p-6 border transition-colors relative overflow-hidden",
+        "flex flex-col justify-center items-center text-center space-y-4 cursor-pointer p-6 border transition-colors relative",
         TOKENS.effects.glassRefractive,
         "hover:bg-white/[0.05]"
       )}>
@@ -131,12 +128,11 @@ export const BentoView = () => (
 
     {/* System Config - Interactive Rail */}
     <motion.div 
-      layout 
       whileHover={{ scale: 1.05, translateZ: 50 }}
       className="group"
     >
       <Card mode="app" className={cn(
-        "h-full flex flex-col justify-center items-center text-center space-y-4 cursor-pointer p-6 border transition-colors",
+        "flex flex-col justify-center items-center text-center space-y-4 cursor-pointer p-6 border transition-colors",
         TOKENS.atmospheric.glass.blur,
         TOKENS.colors.app.surface,
         TOKENS.colors.app.border,

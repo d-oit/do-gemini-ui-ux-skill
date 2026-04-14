@@ -21,12 +21,11 @@ export const AppView = () => {
   
   return (
     <div className={cn(
-      "space-y-10 p-4 md:p-10 rounded-[32px] md:rounded-[48px] border relative overflow-hidden",
-      TOKENS.effects.glassRefractive,
-      TOKENS.effects.antiFlicker
+      "space-y-8 p-4 md:p-8 rounded-[32px] md:rounded-[48px] border relative",
+      TOKENS.effects.glassRefractive
     )}>
       {/* Background Atmosphere */}
-      <div className={cn("absolute top-0 left-0 w-full h-full pointer-events-none opacity-20", TOKENS.effects.antiFlicker)}>
+      <div className={cn("absolute top-0 left-0 w-full h-full pointer-events-none opacity-20")}>
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/20 blur-[120px] rounded-full" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-indigo-600/20 blur-[120px] rounded-full" />
       </div>
@@ -68,14 +67,13 @@ export const AppView = () => {
         </div>
       </div>
 
-      <motion.div 
-        layout
+      <div 
         className={`grid grid-cols-1 lg:grid-cols-12 ${density === 'overview' ? 'gap-8' : 'gap-3'}`}
       >
         {/* Main Telemetry Panel */}
-        <motion.div layout className="lg:col-span-8">
+        <div className="lg:col-span-8">
           <Card mode="app" className={cn(
-            "h-full relative overflow-hidden",
+            "relative",
             TOKENS.effects.glassRefractive,
             density === 'telemetry' ? TOKENS.density.telemetry.padding : TOKENS.density.overview.padding
           )}>
@@ -132,10 +130,10 @@ export const AppView = () => {
               ))}
             </div>
           </Card>
-        </motion.div>
+        </div>
         
         {/* Stats Sidebar */}
-        <motion.div layout className="lg:col-span-4 space-y-6">
+        <div className="lg:col-span-4 space-y-6">
           <Card mode="app" className={cn(
             TOKENS.atmospheric.glass.blur,
             TOKENS.colors.app.surface,
@@ -189,8 +187,8 @@ export const AppView = () => {
               Initialize <ChevronRight size={14} />
             </motion.button>
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </div>
   );
 };

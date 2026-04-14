@@ -30,10 +30,9 @@ export const Trends2026View = () => {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       className={cn(
-        "relative p-8 md:p-16 rounded-[60px] overflow-hidden min-h-[700px] flex items-center justify-center border selection:bg-blue-500/30",
+        "relative p-6 md:p-16 rounded-[40px] md:rounded-[60px] border selection:bg-blue-500/30",
         TOKENS.colors.app.bg,
-        TOKENS.colors.app.border,
-        TOKENS.effects.antiFlicker
+        TOKENS.colors.app.border
       )}
     >
       {/* 2026 ATMOSPHERIC DEPTH SYSTEM */}
@@ -95,7 +94,7 @@ export const Trends2026View = () => {
             </motion.div>
             
             <motion.h3 
-              className={cn(TOKENS.typography.heading, "text-5xl md:text-8xl text-white pb-4")}
+              className={cn(TOKENS.typography.heading, "text-4xl sm:text-5xl md:text-8xl text-white pb-4")}
               style={{ perspective: 1000 }}
             >
               <motion.span 
@@ -192,7 +191,7 @@ export const Trends2026View = () => {
             />
 
             {/* CONTENT LAYERS */}
-            <div className="relative z-10 h-full flex flex-col justify-between">
+            <div className="relative z-10 flex flex-col justify-between">
               <div className="space-y-12">
                 <div className="flex justify-between items-start">
                   <motion.div 

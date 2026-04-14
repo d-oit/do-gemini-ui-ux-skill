@@ -39,20 +39,19 @@ export const SpatialCommandCenter = () => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={cn(
-        "relative p-6 md:p-12 rounded-[40px] md:rounded-[60px] bg-[#020408] border border-white/5 overflow-hidden flex items-center justify-center",
-        TOKENS.effects.glassRefractive,
-        TOKENS.effects.antiFlicker
+        "relative p-6 md:p-12 rounded-[40px] md:rounded-[60px] bg-[#020408] border border-white/5",
+        TOKENS.effects.glassRefractive
       )}
       style={{ perspective: 1500 }}
     >
       {/* VOLUMETRIC LIGHTING SYSTEM */}
-      <div className={cn("absolute inset-0 pointer-events-none overflow-hidden", TOKENS.effects.antiFlicker)}>
+      <div className={cn("absolute inset-0 pointer-events-none")}>
         <motion.div 
           style={{ 
             x: useTransform(mouseXSpring, [-0.5, 0.5], [-100, 100]),
             y: useTransform(mouseYSpring, [-0.5, 0.5], [-100, 100]),
           }}
-          className={cn("absolute inset-0 opacity-30", TOKENS.effects.antiFlicker)}
+          className={cn("absolute inset-0 opacity-30")}
         >
           <div className="absolute top-1/4 left-1/4 w-[800px] h-[800px] bg-blue-600/10 blur-[180px] rounded-full" />
           <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-indigo-600/10 blur-[150px] rounded-full" />
@@ -73,7 +72,7 @@ export const SpatialCommandCenter = () => {
       {/* 3D SPATIAL GRID */}
       <motion.div 
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-        className="relative z-10 w-full max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-8 h-full items-stretch"
+        className="relative z-10 w-full max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch"
       >
         {/* Sidebar: System Vitals */}
         <div className="lg:col-span-3 space-y-6" style={{ transform: "translateZ(40px)" }}>
@@ -140,7 +139,7 @@ export const SpatialCommandCenter = () => {
         <div className="lg:col-span-9 grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="md:col-span-2" style={{ transform: "translateZ(80px)" }}>
             <div className={cn(
-              "h-full p-10 rounded-[48px] flex flex-col justify-between overflow-hidden relative group",
+              "p-10 rounded-[48px] flex flex-col justify-between overflow-hidden relative group",
               TOKENS.atmospheric.glass.blur,
               TOKENS.colors.app.surface,
               "border",

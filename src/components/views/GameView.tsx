@@ -23,14 +23,13 @@ export const GameView = () => {
 
   return (
     <div className={cn(
-      "relative h-[500px] md:h-[600px] w-full overflow-hidden border select-none touch-none shadow-2xl",
+      "relative h-auto min-h-[400px] md:min-h-[500px] w-full border select-none touch-none shadow-2xl",
       TOKENS.colors.game.bg,
       TOKENS.colors.game.border,
-      TOKENS.radius.app,
-      TOKENS.effects.antiFlicker
+      TOKENS.radius.app
     )}>
       {/* DYNAMIC PARALLAX STARFIELD */}
-      <div className={cn("absolute inset-0 overflow-hidden pointer-events-none", TOKENS.effects.antiFlicker)}>
+      <div className={cn("absolute inset-0 overflow-hidden pointer-events-none")}>
         <motion.div 
           animate={{ 
             x: joystickPos.x * -0.5,

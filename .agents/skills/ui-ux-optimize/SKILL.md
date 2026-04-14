@@ -42,7 +42,7 @@ To ensure continuity across turns, the skill maintains:
 - **Mobile Cutoffs:** Horizontal lists often break on mobile. Always enforce `overflow-x-auto` for horizontal navigation.
 - **Z-Index Wars:** Avoid absolute positioning for core layout. Enforce flow-based layouts (Flexbox/Grid) to prevent overlapping elements.
 - **Flickering UI:** State transitions without `AnimatePresence` will flicker. Always use `mode="wait"` and `initial={false}` for smooth transitions. High-motion elements must use `TOKENS.effects.antiFlicker` to stabilize rendering.
-- **Overflow Jitter:** Unstable scrollbars cause layout shifts. Enforce `overflow-x-hidden` on the root container and `overflow-y-auto` for content.
+- **Overflow Jitter:** Unstable scrollbars cause layout shifts. Enforce a **Single Scroll Context**: Lock `html { overflow: hidden }` and delegate all vertical scrolling to `body { overflow-y: auto; height: 100% }`. This prevents double scrollbar regressions in iframe environments.
 
 ## Required Workflow
 
@@ -70,6 +70,7 @@ To ensure continuity across turns, the skill maintains:
 - **Zero Overlap:** No elements should collide on any viewport (375px to 1920px).
 - **High Contrast:** All text must meet WCAG AA standards against dynamic backgrounds.
 - **Motion Stability:** Zero flickering or layout shifts during transitions.
+- **Single Scroll Context:** Zero double scrollbar regressions. Enforce `body`-only scrolling.
 - **Token Integrity:** 100% of styles derived from `TOKENS`.
 
 ## Cross-Skill Integration

@@ -23,12 +23,12 @@ const FitnessTracker = () => {
   const styles = TOKENS.colors.technical;
 
   return (
-    <div className={cn(styles.bg, 'p-4 md:p-8 font-sans relative overflow-hidden', TOKENS.effects.antiFlicker)}>
+    <div className={cn(styles.bg, 'p-4 md:p-6 font-sans relative')}>
       {/* SPATIAL GRID BACKGROUND */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(to_right,#141414_1px,transparent_1px),linear-gradient(to_bottom,#141414_1px,transparent_1px)] bg-[size:40px_40px]" />
       
       {/* Header */}
-      <header className={cn("mb-12 md:mb-20 border-b pb-10 relative z-10", styles.border)}>
+      <header className={cn("mb-8 md:mb-12 border-b pb-6 relative z-10", styles.border)}>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
@@ -74,7 +74,7 @@ const FitnessTracker = () => {
             transition={{ delay: i * 0.1 }}
           >
             <Card mode="technical" className={cn(
-              "group relative overflow-hidden transition-all p-6 md:p-8 border-2",
+              "group relative transition-all p-6 md:p-8 border-2",
               "hover:bg-[#141414] hover:text-white hover:border-[#F27D26]/30"
             )}>
               <div className="absolute top-0 right-0 p-6 opacity-[0.03] group-hover:opacity-10 transition-opacity">
@@ -127,7 +127,7 @@ const FitnessTracker = () => {
       </div>
 
       {/* Main Content Area */}
-      <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3 relative z-10">
+      <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-3 relative z-10">
         <Card mode="technical" className="lg:col-span-2 p-8 border-2">
           <div className="flex items-center justify-between mb-10">
             <div className="space-y-1">

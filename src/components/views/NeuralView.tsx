@@ -55,7 +55,7 @@ export const NeuralView = () => {
   return (
     <div className={cn("grid grid-cols-1 lg:grid-cols-12 gap-8 w-full", TOKENS.layout.safeArea)}>
       {/* BRAIN VISUALIZER (7 COLUMNS) */}
-      <div className={cn("lg:col-span-7 relative h-[500px] lg:h-[600px] rounded-[40px] border overflow-hidden group shadow-2xl", TOKENS.effects.antiFlicker)} style={{ backgroundColor: '#020617' }}>
+      <div className={cn("lg:col-span-7 relative h-auto min-h-[400px] lg:min-h-[500px] rounded-[40px] border group shadow-2xl")} style={{ backgroundColor: '#020617' }}>
         <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_50%_50%,#4f46e5,transparent_70%)]" />
         
         {/* SVG CONNECTIONS */}
@@ -155,8 +155,7 @@ export const NeuralView = () => {
 
         {/* HUD OVERLAY */}
         <div className={cn(
-          "absolute top-4 left-4 md:top-8 md:left-8 p-4 md:p-6 rounded-2xl md:rounded-3xl border bg-black/90 backdrop-blur-3xl border-white/20 space-y-3 md:space-y-4 w-[calc(100%-32px)] md:w-72 z-20 shadow-2xl",
-          TOKENS.effects.antiFlicker
+          "absolute top-4 left-4 md:top-8 md:left-8 p-4 md:p-6 rounded-2xl md:rounded-3xl border bg-black/90 backdrop-blur-3xl border-white/20 space-y-3 md:space-y-4 w-[calc(100%-32px)] md:w-72 z-20 shadow-2xl"
         )}>
           <div className="space-y-1">
             <p className={cn(TOKENS.typography.microLabel, "text-cyan-400 font-bold")}>Neural Status</p>
@@ -187,7 +186,7 @@ export const NeuralView = () => {
               exit={{ opacity: 0, x: -20 }}
               className="space-y-6"
             >
-              <Card mode="neural" className={cn("p-8 space-y-6 relative overflow-hidden border-indigo-500/30")}>
+              <Card mode="neural" className={cn("p-8 space-y-6 relative border-indigo-500/30")}>
                 <div className="absolute top-0 right-0 p-8 opacity-10">
                   <Brain size={120} className="text-cyan-400" />
                 </div>
@@ -270,7 +269,7 @@ export const NeuralView = () => {
                   onClick={handleOptimize}
                   disabled={isOptimizing}
                   className={cn(
-                    "w-full py-6 rounded-[32px] border flex items-center justify-center gap-3 transition-all group overflow-hidden relative",
+                    "w-full py-6 rounded-[32px] border flex items-center justify-center gap-3 transition-all group relative",
                     isOptimizing ? "bg-cyan-500/20 border-cyan-500/50" : "bg-white/5 border-white/10 hover:border-cyan-500/50 hover:bg-cyan-500/5"
                   )}
                 >

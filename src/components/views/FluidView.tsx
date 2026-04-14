@@ -73,7 +73,6 @@ export const FluidView = () => {
       {/* 2026 LIQUID DYNAMIC ISLAND SYSTEM */}
       <div className="flex justify-center sticky top-20 md:top-24 z-50 overflow-visible">
         <motion.div 
-          layout
           initial={{ borderRadius: 40 }}
           animate={{ 
             width,
@@ -84,7 +83,6 @@ export const FluidView = () => {
           transition={TOKENS.motion.fluid}
           className={cn(
             TOKENS.effects.glassRefractive,
-            TOKENS.effects.antiFlicker,
             "flex flex-col items-center justify-center overflow-hidden cursor-pointer group relative"
           )}
           onClick={() => setIslandState(prev => prev === 'expanded' ? 'idle' : 'expanded')}
@@ -166,7 +164,7 @@ export const FluidView = () => {
                 key="expanded"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="p-6 md:p-8 w-full h-full flex flex-col justify-between overflow-y-auto no-scrollbar"
+                className="p-6 md:p-8 w-full flex flex-col justify-between overflow-y-auto no-scrollbar"
               >
                 <div className="flex justify-between items-start mb-6">
                   <div className="space-y-1 md:space-y-2">
@@ -257,7 +255,6 @@ export const FluidView = () => {
           {items.map((item) => (
             <motion.div 
               key={item.id}
-              layout
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -269,9 +266,8 @@ export const FluidView = () => {
                 mass: 1.2
               }}
               className={cn(
-                "p-10 rounded-[56px] border space-y-8 group cursor-pointer relative overflow-hidden",
-                TOKENS.effects.glassRefractive,
-                TOKENS.effects.antiFlicker
+                "p-10 rounded-[56px] border space-y-8 group cursor-pointer relative",
+                TOKENS.effects.glassRefractive
               )}
               onClick={() => triggerNotification(`${item.title} Initialized`)}
             >

@@ -16,12 +16,13 @@ import { SpatialCommandCenter } from './components/views/SpatialCommandCenter';
 import { FluidView } from './components/views/FluidView';
 import { NeuralView } from './components/views/NeuralView';
 import { VerificationView } from './components/views/VerificationView';
+import { ScreenshotGallery } from './components/views/ScreenshotGallery';
 import FitnessTracker from './FitnessTracker';
 
 // --- MAIN APP ---
 
 export default function App() {
-  const [mode, setMode] = useState<'app' | 'game' | 'bento' | '2026' | 'command' | 'fluid' | 'neural' | 'fitness' | 'verify'>('app');
+  const [mode, setMode] = useState<'app' | 'game' | 'bento' | '2026' | 'command' | 'fluid' | 'neural' | 'fitness' | 'verify' | 'gallery'>('app');
   
   const currentStyles = mode === 'game' ? TOKENS.colors.game : mode === 'neural' ? TOKENS.colors.neural : mode === 'fitness' ? TOKENS.colors.technical : TOKENS.colors.app;
   
@@ -32,26 +33,15 @@ export default function App() {
     return 'app';
   };
 
-  return (
-    <div className={`min-h-screen ${currentStyles.bg} transition-colors duration-700 font-sans selection:bg-blue-500/30 relative ${TOKENS.effects.antiFlicker}`}>
-      {/* Global Atmosphere */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <motion.div 
-          animate={{ 
-            x: mode === 'game' ? '10%' : '-10%',
-            opacity: mode === 'game' ? 0.4 : 0.2
-          }}
-          className="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] bg-blue-600/20 blur-[160px] rounded-full" 
-        />
-        <motion.div 
-          animate={{ 
-            x: mode === 'game' ? '-10%' : '10%',
-            opacity: mode === 'game' ? 0.4 : 0.2
-          }}
-          className="absolute -bottom-[20%] -right-[10%] w-[60%] h-[60%] bg-indigo-600/20 blur-[160px] rounded-full" 
-        />
-      </div>
+  React.useEffect(() => {
+    document.body.className = cn(
+      "m-0 p-0 overflow-x-hidden overflow-y-auto transition-colors duration-700 font-sans selection:bg-blue-500/30",
+      currentStyles.bg
+    );
+  }, [currentStyles.bg]);
 
+  return (
+    <div className={cn("w-full", currentStyles.text)}>
       {/* Floating Header */}
       <header className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-5xl">
         <div className={cn(
@@ -72,7 +62,7 @@ export default function App() {
             "flex bg-white/5 p-1 rounded-xl md:rounded-2xl border border-white/5",
             TOKENS.layout.mobileNav
           )}>
-            {(['app', 'game', 'bento', '2026', 'command', 'fluid', 'neural', 'fitness', 'verify'] as const).map(m => (
+            {(['app', 'game', 'bento', '2026', 'command', 'fluid', 'neural', 'fitness', 'verify', 'gallery'] as const).map(m => (
               <button 
                 key={m}
                 onClick={() => setMode(m)}
@@ -104,15 +94,15 @@ export default function App() {
         </div>
       </header>
 
-      <main className={cn(TOKENS.layout.container, "pt-24 md:pt-32 pb-6 relative z-10")}>
-        <section className="space-y-2 text-center md:text-left mb-8 md:mb-12">
+      <main className={cn(TOKENS.layout.container, "pt-20 md:pt-28 pb-12 md:pb-20 relative z-10")}>
+        <section className="space-y-2 text-center md:text-left mb-6 md:mb-10">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             className="flex items-center gap-4 justify-center md:justify-start"
           >
             <span className={cn(TOKENS.typography.microLabel, "text-blue-400/60")}>
-              {mode === 'app' ? 'Production Dashboard' : mode === 'game' ? 'Gameplay Interface' : mode === 'bento' ? 'Bento Grid Layout' : mode === '2026' ? 'Atmospheric Depth' : mode === 'command' ? 'Spatial Command' : mode === 'fluid' ? 'Fluid Dynamics' : mode === 'neural' ? 'Neural Network' : mode === 'fitness' ? 'Fitness Telemetry' : 'Skill Verification'}
+              {mode === 'app' ? 'Production Dashboard' : mode === 'game' ? 'Gameplay Interface' : mode === 'bento' ? 'Bento Grid Layout' : mode === '2026' ? 'Atmospheric Depth' : mode === 'command' ? 'Spatial Command' : mode === 'fluid' ? 'Fluid Dynamics' : mode === 'neural' ? 'Neural Network' : mode === 'fitness' ? 'Fitness Telemetry' : mode === 'gallery' ? 'Visual Audit' : 'Skill Verification'}
             </span>
             <span className={cn("h-px w-12", currentStyles.border)} />
           </motion.div>
@@ -123,7 +113,7 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             className={cn(TOKENS.typography.heading, currentStyles.text, "break-words max-w-full text-center md:text-left")}
           >
-            {mode === 'app' ? 'System Performance Monitor' : mode === 'game' ? 'Tactical Combat HUD' : mode === 'bento' ? 'Project Grid Layout' : mode === '2026' ? 'Spatial UI Experiment' : mode === 'command' ? 'Spatial Command Center' : mode === 'fluid' ? 'Fluid Motion Systems' : mode === 'neural' ? 'Neural Brain Visualizer' : mode === 'fitness' ? 'Performance Telemetry' : 'Skill Architecture Verification'}
+            {mode === 'app' ? 'System Performance Monitor' : mode === 'game' ? 'Tactical Combat HUD' : mode === 'bento' ? 'Project Grid Layout' : mode === '2026' ? 'Spatial UI Experiment' : mode === 'command' ? 'Spatial Command Center' : mode === 'fluid' ? 'Fluid Motion Systems' : mode === 'neural' ? 'Neural Brain Visualizer' : mode === 'fitness' ? 'Performance Telemetry' : mode === 'gallery' ? 'Responsive Audit Gallery' : 'Skill Architecture Verification'}
           </motion.h2>
           
           <motion.p 
@@ -148,11 +138,13 @@ export default function App() {
               ? 'Interactive neural network simulation visualizing synaptic load and core processing nodes.'
               : mode === 'fitness'
               ? 'High-density performance tracking for elite athletes and health-conscious users.'
+              : mode === 'gallery'
+              ? 'Visual verification of layout across Desktop, Tablet, and Mobile viewports.'
               : 'Validating the UI/UX Prompt Optimizer workflow, swarm architecture, and quality bar compliance.'}
           </motion.p>
         </section>
 
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={mode}
             data-testid="view-container"
@@ -162,13 +154,13 @@ export default function App() {
             transition={{ type: "spring", stiffness: 200, damping: 25 }}
             className="w-full"
           >
-            {mode === 'app' ? <AppView /> : mode === 'game' ? <GameView /> : mode === 'bento' ? <BentoView /> : mode === '2026' ? <Trends2026View /> : mode === 'command' ? <SpatialCommandCenter /> : mode === 'fluid' ? <FluidView /> : mode === 'neural' ? <NeuralView /> : mode === 'fitness' ? <FitnessTracker /> : <VerificationView />}
+            {mode === 'app' ? <AppView /> : mode === 'game' ? <GameView /> : mode === 'bento' ? <BentoView /> : mode === '2026' ? <Trends2026View /> : mode === 'command' ? <SpatialCommandCenter /> : mode === 'fluid' ? <FluidView /> : mode === 'neural' ? <NeuralView /> : mode === 'fitness' ? <FitnessTracker /> : mode === 'gallery' ? <ScreenshotGallery /> : <VerificationView />}
           </motion.div>
         </AnimatePresence>
 
         {/* Live Training Data Feed */}
-        <div data-testid="training-feed" className="mt-12 border-t border-white/10 pt-8 pb-6">
-          <div className="flex items-center gap-4 mb-6 opacity-80">
+        <div data-testid="training-feed" className="mt-8 border-t border-white/10 pt-6 pb-0">
+          <div className="flex items-center gap-4 mb-4 opacity-80">
             <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
             <span className="text-[10px] font-mono uppercase tracking-[0.4em] text-white font-bold">Neural Training Data Feed</span>
           </div>
